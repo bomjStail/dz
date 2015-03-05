@@ -1,13 +1,14 @@
 <?php
-require(__DIR__.'function.php');
-?>
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>news</title>
-</head>
-<body>
-$NewsPaper = new NewsPaper(text,title,author);
-</body>
-</html>
+require_once __DIR__ . '/autoload.php';
+
+$ctrl = isset($_GET['ctrl']) ? $_GET['ctrl'] : 'News';
+$act = isset($_GET['act']) ? $_GET['act'] : 'All';
+$controllerClassName = $ctrl . 'Controller';
+
+$controller = new $controllerClassName;
+$method = 'action' . $act;
+$controller->$method();
+
+
+
+
